@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { checkIdAvailability } from "../api/userApi";
-import { validateId } from "../utils/validation";
+import { checkIdAvailability } from "../../api/userApi";
+import { validateId } from "../../utils/validation";
 
+{
+  /* 아이디 중복체크 */
+}
 export function useSignupForm() {
   const [userId, setUserId] = useState("");
   const [idError, setIdError] = useState("");
@@ -47,5 +50,42 @@ export function useSignupForm() {
     idError,
     isIdVerified,
     handleCheckId,
+  };
+}
+
+{
+  /* 약관동의 항목*/
+}
+export function useTermsAgreement() {
+  const [agreements, setAgreements] = useState({
+    service: false,
+    privacy: false,
+    finance: false,
+    marketing: false,
+  });
+
+  const allChecked = Object.values(agreements).every(Boolean);
+  const isRequiredAgreed =
+    agreements.service && agreements.privacy && agreements.finance;
+
+  const handleAllCheck = (checked) => {
+    setAgreements({
+      service: checked,
+      privacy: checked,
+      finance: checked,
+      marketing: checked,
+    });
+  };
+
+  const handleSingleCheck = (key) => (e) => {
+    setAgreements((prev) => ({ ...prev, [key]: e.target.checked }));
+  };
+
+  return {
+    agreements,
+    allChecked,
+    isRequiredAgreed,
+    handleAllCheck,
+    handleSingleCheck,
   };
 }

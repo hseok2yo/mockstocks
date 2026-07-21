@@ -14,6 +14,7 @@ mockstocks-frontend/dist/
 # Environment
 .env
 *.local
+mockstocks-backend/src/main/resources/application-secret.properties
 
 # OS
 .DS_Store

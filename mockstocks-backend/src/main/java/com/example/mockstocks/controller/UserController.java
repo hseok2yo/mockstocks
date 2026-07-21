@@ -25,7 +25,6 @@ public class UserController {
      */
     @GetMapping("/check-id")
     public ResponseEntity<Boolean> checkIdAvailable(@RequestParam String userId) {
-        System.out.println("@@@@@@@@" + userService.isIdAvailable(userId));
         return ResponseEntity.ok(userService.isIdAvailable(userId));
     }
 }

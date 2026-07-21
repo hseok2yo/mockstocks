@@ -2,8 +2,10 @@ import '../css/AuthHeader.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { validateId } from "../utils/validation";
-import { useSignupForm } from "../hooks/useSignupForm";
+import { useSignupForm, useTermsAgreement } from "../hooks/signupPage/useSignupForm";
 
+
+{/* */ }
 function SignupPage() {
 
   const [nickname, setNickname] = useState("");
@@ -22,11 +24,11 @@ function SignupPage() {
   });
 
   const [showEmailCode, setShowEmailCode] = useState(false);
-  const [showPhoneCode, setShowPhoneCode] = useState(false);
 
-
+  {/* 회원가입 아이디 중복체크 */ }
   const { userId, handleUserIdChange, idError, isIdVerified, handleCheckId } = useSignupForm();
-
+  {/* 약관동의 상태 관리 */ }
+  const { agreements, allChecked, handleAllCheck, handleSingleCheck } = useTermsAgreement();
 
   return (
     <div className="auth-page">
@@ -142,19 +144,19 @@ function SignupPage() {
             <button
               type="button"
               className="verify-button"
-              onClick={() => setShowEmailCode(true)}
+
             >
               인증하기
             </button>
           </div>
 
-          {showEmailCode && (
-            <input
-              className="auth-input verify-code-input"
-              type="text"
-              placeholder="이메일 인증번호 입력"
-            />
-          )}
+
+          <input
+            className="auth-input verify-code-input"
+            type="text"
+            placeholder="이메일 인증번호 입력"
+          />
+
 
           <label className="auth-label" htmlFor="signup-phone">
             휴대폰 번호
@@ -171,45 +173,57 @@ function SignupPage() {
             <button
               type="button"
               className="verify-button"
-              onClick={() => setShowPhoneCode(true)}
+
             >
               인증하기
             </button>
           </div>
 
-          {showPhoneCode && (
-            <input
-              className="auth-input verify-code-input"
-              type="text"
-              placeholder="휴대폰 인증번호 입력"
-            />
-          )}
-
 
 
           <div className="terms-section">
             <label className="checkbox-label">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={allChecked}
+                onChange={(e) => handleAllCheck(e.target.checked)}
+              />
               <span>전체 동의</span>
             </label>
 
             <label className="checkbox-label sub">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={agreements.service}
+                onChange={handleSingleCheck('service')}
+              />
               <span>[필수] 서비스 이용약관 동의</span>
             </label>
 
             <label className="checkbox-label sub">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={agreements.privacy}
+                onChange={handleSingleCheck('privacy')}
+              />
               <span>[필수] 개인정보 수집 및 이용 동의</span>
             </label>
 
             <label className="checkbox-label sub">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={agreements.finance}
+                onChange={handleSingleCheck('finance')}
+              />
               <span>[필수] 전자금융거래 이용약관 동의</span>
             </label>
 
             <label className="checkbox-label sub">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={agreements.marketing}
+                onChange={handleSingleCheck('marketing')}
+              />
               <span>[선택] 마케팅 정보 수신 동의</span>
             </label>
           </div>
