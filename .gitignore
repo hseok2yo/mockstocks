@@ -1,0 +1,20 @@
+# IntelliJ
+.idea/
+**/.idea/
+*.iml
+
+# Backend
+mockstocks-backend/build/
+mockstocks-backend/.gradle/
+
+# Frontend
+mockstocks-frontend/node_modules/
+mockstocks-frontend/dist/
+
+# Environment
+.env
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
