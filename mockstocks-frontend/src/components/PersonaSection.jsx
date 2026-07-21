@@ -1,4 +1,4 @@
-import { PERSONAS } from '../data/mockData';
+import { PERSONAS } from '@/data/mockData';
 
 function PersonaSection() {
   return (

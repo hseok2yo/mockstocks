@@ -1,4 +1,4 @@
-import { STEPS } from '../data/mockData';
+import { STEPS } from '@/data/mockData';
 
 function StepsSection() {
   return (

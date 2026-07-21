@@ -1,4 +1,4 @@
-import { SCOREBOARD_DATA } from '../data/mockData';
+import { SCOREBOARD_DATA } from '@/data/mockData';
 
 function ScoreBoard() {
   return (

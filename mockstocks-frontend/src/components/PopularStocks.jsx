@@ -1,4 +1,4 @@
-import { POPULAR_STOCKS } from '../data/mockData';
+import { POPULAR_STOCKS } from '@/data/mockData';
 
 function PopularStocks() {
   return (

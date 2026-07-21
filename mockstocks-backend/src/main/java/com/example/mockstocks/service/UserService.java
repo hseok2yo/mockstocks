@@ -1,11 +1,16 @@
 package com.example.mockstocks.service;
 
-public interface UserService {
+import com.example.mockstocks.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-    /**
-     * 아이디 사용 가능 여부 확인
-     * @param userId 확인할 아이디
-     * @return true = 사용 가능, false = 이미 사용중
-     */
-    boolean isIdAvailable(String userId);
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public boolean isIdAvailable(String userId) {
+        return !userRepository.existsByUserId(userId);
+    }
 }

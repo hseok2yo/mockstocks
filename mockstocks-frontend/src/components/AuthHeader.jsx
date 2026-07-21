@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Nav from './Nav';
-import '../css/AuthHeader.css';
+import Nav from '@/components/Nav';
+import '@/css/AuthHeader.css';
 
 function AuthHeader() {
   return (

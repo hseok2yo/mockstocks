@@ -1,15 +1,15 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Ticker from './components/Ticker';
-import AuthHeader from './components/AuthHeader';
-import Hero from './components/Hero';
-import PopularStocks from './components/PopularStocks';
-import PersonaSection from './components/PersonaSection';
-import StepsSection from './components/StepsSection';
-import LivePanel from './components/LivePanel';
-import Footer from './components/Footer';
-import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignupPage';
-import './css/App.css';
+import Ticker from '@/components/Ticker';
+import AuthHeader from '@/components/AuthHeader';
+import Hero from '@/components/Hero';
+import PopularStocks from '@/components/PopularStocks';
+import PersonaSection from '@/components/PersonaSection';
+import StepsSection from '@/components/StepsSection';
+import LivePanel from '@/components/LivePanel';
+import Footer from '@/components/Footer';
+import LoginPage from '@/components/LoginPage';
+import SignupPage from '@/components/SignupPage';
+import '@/css/App.css';
 
 function App() {
   return (

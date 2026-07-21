@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { checkIdAvailability } from "../../api/userApi";
-import { validateId } from "../../utils/validation";
+import { checkIdAvailability } from "@/api/common/userApi";
+import { validateId } from "@/utils/validation";
 
 {
   /* 아이디 중복체크 */
