@@ -1,13 +1,11 @@
 package com.example.mockstocks.controller;
 
 
+import com.example.mockstocks.dto.SignupRequest;
 import com.example.mockstocks.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,4 +22,13 @@ public class UserController {
     public ResponseEntity<Boolean> checkIdAvailable(@RequestParam String userId) {
         return ResponseEntity.ok(userService.isIdAvailable(userId));
     }
+
+    @PostMapping("/signup")
+    public ResponseEntity<Void> signup(@RequestBody SignupRequest request) {
+
+        userService.signup(request);
+
+        return ResponseEntity.ok().build();
+    }
+
 }

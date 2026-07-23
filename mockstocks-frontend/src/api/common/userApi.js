@@ -29,3 +29,13 @@ export const sendEmailCode = (email) => {
 export const verifyEmailCode = (email, code) => {
   return axiosInstance.post("/api/email/verify-code", { email, code });
 };
+
+/**
+ * 회원가입 요청
+ * @param {Object} signupData - 회원가입에 필요한 데이터
+ * @returns {Promise} { data: { success: boolean } }
+ */
+export const signup = async (signupData) => {
+  const response = await axiosInstance.post("/api/users/signup", signupData);
+  return response.data;
+};
