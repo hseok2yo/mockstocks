@@ -100,6 +100,21 @@ export function useTermsAgreement() {
   };
 }
 
+/* 약관동의 항목을 서버에 보낼 수 있는 형식으로 변환 */
+export function toAgreementRequests(agreements) {
+  const result = [];
+
+  for (const key in agreements) {
+    result.push({
+      agreementType: key,
+      agreed: agreements[key],
+      termsVersion: "v1.0",
+    });
+  }
+
+  return result;
+}
+
 /* 유효성 검사 */
 function useValidationChecking() {
   const [errors, setErrors] = useState({});
@@ -111,7 +126,7 @@ function useValidationChecking() {
     const nickname = formData.nickname;
     const password = formData.password;
     const passwordCheck = formData.passwordCheck;
-    const name = formData.name;
+    const username = formData.username;
     const birth = formData.birth;
     const email = formData.email;
     const isEmailVerified = formData.isEmailVerified;
@@ -138,7 +153,7 @@ function useValidationChecking() {
     newErrors.passwordCheck = validatePasswordCheck(password, passwordCheck);
 
     // 이름 체크
-    newErrors.name = validateName(name);
+    newErrors.username = validateName(username);
 
     // 생년월일 체크
     newErrors.birth = validateBirth(birth);
@@ -173,7 +188,7 @@ function useValidationChecking() {
     if (newErrors.nickname !== "") hasError = true;
     if (newErrors.password !== "") hasError = true;
     if (newErrors.passwordCheck !== "") hasError = true;
-    if (newErrors.name !== "") hasError = true;
+    if (newErrors.username !== "") hasError = true;
     if (newErrors.birth !== "") hasError = true;
     if (newErrors.email !== "") hasError = true;
     if (newErrors.phone !== "") hasError = true;
@@ -207,22 +222,9 @@ export function useSignup() {
       return true;
     } catch (error) {
       console.error("회원가입 실패:", error);
-      const errorCode = error.response?.data?.errorCode;
       const serverMessage = error.response?.data?.message;
 
-      let message = "회원가입에 실패했습니다. 다시 시도해주세요.";
-
-      if (errorCode === "DUPLICATE_USER_ID") {
-        message =
-          "이미 사용 중인 아이디입니다. 아이디 중복확인을 다시 해주세요.";
-      } else if (errorCode === "DUPLICATE_EMAIL") {
-        message = "이미 사용 중인 이메일입니다.";
-      } else if (serverMessage) {
-        // 백엔드가 위 두 케이스 외의 메시지를 내려준 경우 그대로 사용
-        message = serverMessage;
-      }
-
-      alert(message);
+      alert(serverMessage || "회원가입에 실패했습니다. 다시 시도해주세요.");
       return false;
     }
   };

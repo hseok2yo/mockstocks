@@ -1,5 +1,6 @@
 package com.example.mockstocks.dto;
 
+import com.example.mockstocks.entity.AgreementRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,9 +18,6 @@ public class SignupRequest {
     private String email;
     private String phone;
     private LocalDate birth;
-
-    private Boolean isIdVerified;
-    private Boolean isEmailVerified;
 
     private List<AgreementRequest> agreements;
 }

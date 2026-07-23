@@ -1,7 +1,7 @@
 import '@/css/AuthHeader.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSignupForm, useTermsAgreement, useSignup } from '@/hooks/signupPage/useSignupForm';
+import { useSignupForm, useTermsAgreement, useSignup, toAgreementRequests } from '@/hooks/signupPage/useSignupForm';
 import { useVerification } from "@/hooks/common/useVerification";
 
 function SignupPage() {
@@ -10,7 +10,7 @@ function SignupPage() {
     nickname: "",
     password: "",
     passwordCheck: "",
-    name: "",
+    username: "",
     birth: "",
     email: "",
     phone: "",
@@ -100,10 +100,10 @@ function SignupPage() {
             className="auth-input"
             type="text"
             placeholder="홍길동"
-            value={formData.name}
-            onChange={handleChange("name")}
+            value={formData.username}
+            onChange={handleChange("username")}
           />
-          {errors.name && <p style={{ color: "red", margin: "0" }}>{errors.name}</p>}
+          {errors.username && <p style={{ color: "red", margin: "0" }}>{errors.username}</p>}
 
           {/* 생년월일 */}
           <label className="auth-label" htmlFor="signup-birth">생년월일</label>
@@ -218,7 +218,7 @@ function SignupPage() {
             isIdVerified,
             isEmailVerified: emailVerify.isVerified,
             isAllRequiredChecked: isRequiredAgreed,
-            marketingAgreed: agreements.marketing,
+            agreements: toAgreementRequests(agreements),
           })}>
             회원가입
           </button>
