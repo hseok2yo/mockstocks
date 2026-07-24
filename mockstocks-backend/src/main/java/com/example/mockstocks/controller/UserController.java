@@ -1,7 +1,10 @@
 package com.example.mockstocks.controller;
 
 
+import com.example.mockstocks.dto.LoginRequest;
+import com.example.mockstocks.dto.LoginResponse;
 import com.example.mockstocks.dto.SignupRequest;
+import com.example.mockstocks.exception.CustomException;
 import com.example.mockstocks.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +32,12 @@ public class UserController {
         userService.signup(request);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        String token = userService.login(request);
+        return ResponseEntity.ok(new LoginResponse(token));
     }
 
 }

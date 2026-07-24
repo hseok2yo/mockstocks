@@ -10,32 +10,35 @@ import Footer from '@/components/Footer';
 import LoginPage from '@/components/LoginPage';
 import SignupPage from '@/components/SignupPage';
 import '@/css/App.css';
+import { AuthProvider } from '@/components/AuthContext';
 
 function App() {
   return (
-    <div className="app">
-      <Ticker />
-      <AuthHeader />
+    <AuthProvider>
+      <div className="app">
+        <Ticker />
+        <AuthHeader />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Hero />
-              <PopularStocks />
-              <PersonaSection />
-              <StepsSection />
-              <LivePanel />
-              <Footer />
-            </>
-          }
-        />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <PopularStocks />
+                <PersonaSection />
+                <StepsSection />
+                <LivePanel />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 

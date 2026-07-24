@@ -256,7 +256,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('2020-02-02',NULL,1,'01021657589','hello','hellokity','hellokity','hyungseok758@naver.com','1234','ADMIN'),('1111-11-11','2026-07-24 06:00:26.000000',3,'01021657581','닉네이','홍길동','hellokity1','hyungseok7581@naver.com','$2a$10$5quF4izysz0p5ManqNrQB.DLkmeMc.icn4XntzdauC1MW8wXeDQBK','USER'),('1111-11-11','2026-07-24 06:14:24.000000',5,'01021657580','닉넴','길동','hellokity12','hyungseok75@naver.com','$2a$10$LIkAwW5rSeRUxNn0C2ygSev2sLvbRIvST//GDi0z3pKEz0UlTDPQO','USER');
+INSERT INTO `user` VALUES ('2020-02-02',NULL,1,'01021657589','hello','hellokity','hellokity','hyungseok758@naver.com','$2a$10$5quF4izysz0p5ManqNrQB.DLkmeMc.icn4XntzdauC1MW8wXeDQBK','ADMIN'),('1111-11-11','2026-07-24 06:00:26.000000',3,'01021657581','닉네이','홍길동','hellokity1','hyungseok7581@naver.com','$2a$10$5quF4izysz0p5ManqNrQB.DLkmeMc.icn4XntzdauC1MW8wXeDQBK','USER'),('1111-11-11','2026-07-24 06:14:24.000000',5,'01021657580','닉넴','길동','hellokity12','hyungseok75@naver.com','$2a$10$LIkAwW5rSeRUxNn0C2ygSev2sLvbRIvST//GDi0z3pKEz0UlTDPQO','USER');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,4 +299,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-24  6:53:07
+-- Dump completed on 2026-07-24 22:18:05

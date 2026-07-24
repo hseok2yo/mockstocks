@@ -1,9 +1,12 @@
 package com.example.mockstocks.service;
 
+import com.example.mockstocks.components.JwtProvider;
+import com.example.mockstocks.dto.LoginRequest;
 import com.example.mockstocks.dto.SignupRequest;
 import com.example.mockstocks.entity.AgreementRequest;
 import com.example.mockstocks.entity.User;
 import com.example.mockstocks.entity.UserAgreement;
+import com.example.mockstocks.exception.CustomException;
 import com.example.mockstocks.exception.SignupException;
 import com.example.mockstocks.repository.UserAgreementRepository;
 import com.example.mockstocks.repository.UserRepository;
@@ -28,6 +31,8 @@ public class UserService {
     public boolean isIdAvailable(String userId) {
         return !userRepository.existsByUserId(userId);
     }
+
+    private final JwtProvider jwtProvider;
 
     public void signup(SignupRequest request) {
 
@@ -76,5 +81,16 @@ public class UserService {
         userAgreementRepository.saveAll(agreements);
 
 
+    }
+
+    public String login(LoginRequest request) {
+        User user = userRepository.findByUserId(request.getUserId())
+                .orElseThrow(() -> new CustomException("아이디 또는 비밀번호가 일치하지 않습니다."));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new CustomException("아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+
+        return jwtProvider.createToken(user.getId(), user.getUserId());
     }
 }

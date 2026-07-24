@@ -39,3 +39,13 @@ export const signup = async (signupData) => {
   const response = await axiosInstance.post("/api/users/signup", signupData);
   return response.data;
 };
+
+/**
+ * 로그인 요청
+ * @param {Object} loginData - 로그인에 필요한 데이터
+ * @returns {Promise} { data: { token: string } }
+ */
+export const loginApi = async (loginData) => {
+  const response = await axiosInstance.post("/api/users/login", loginData);
+  return response.data;
+};
